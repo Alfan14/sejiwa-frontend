@@ -132,7 +132,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-10 flex items-center justify-center md:justify-start gap-x-6">
               <Link
-                href="#"
+                href="/login"
                 className="flex items-center justify-center z-50 rounded-4xl bg-sky-600 px-5 py-2.5 text-lg font-semibold text-white shadow-xs hover:bg-sky-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
               >
                 Assessment<ArrowUpRightIcon className="ml-2 size-5"/>

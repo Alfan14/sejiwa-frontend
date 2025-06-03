@@ -1,11 +1,10 @@
 "use client";
-
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ACCESS_TOKEN_NAME } from "../constants/apiConstants";
 
-export default function RegistrationForm() {
+export default function Registration() {
   const router = useRouter();
 
   const [state, setState] = useState({

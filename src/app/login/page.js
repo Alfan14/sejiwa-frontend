@@ -1,5 +1,6 @@
 "use client";
 
+import { jwtDecode } from 'jwt-decode';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Josefin_Slab } from "next/font/google";
@@ -10,7 +11,7 @@ const josefinSlab = Josefin_Slab({
   subsets: ["latin"],
 });
 
-export default function Form() {
+export default function Login() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -22,15 +23,31 @@ export default function Form() {
     setError("");
 
     try {
-      const response = await AuthService.login(email, password);
-      console.log("Login Successful:", response);
+      const token = await AuthService.login(email, password);
+      console.log("Login Successful:", token);
 
-      router.push("/home");
+      const decoded = jwtDecode(token);
+      const role = decoded.role;
+
+      if (!role) throw new Error("Role not found in token");
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+
+      if (role === "admin") {
+        router.push("/admin");
+      } else if (role === "konselor") {
+        router.push("/konselor");
+      } else {
+        router.push("/home");
+      }
+
     } catch (err) {
       console.error("Login error:", err?.response?.data || err.message);
       setError(err?.response?.data?.message || "Invalid credentials");
     }
   };
+
 
   return (
     <div className="card col-12 col-lg-4 login-card mt-2 hv-center">

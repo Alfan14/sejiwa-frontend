@@ -1,21 +1,9 @@
-"use client";
-
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Bars3Icon } from '@heroicons/react/24/solid';
-import Leftbar from '../components/leftbar';
-import Topbar from '../components/topbar';
+import Leftbar from '../../components/leftbar';
+import Topbar from '../../components/topbar';
 
-export default function Home() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const role = localStorage.getItem('role');
-    if (role !== '') {
-      router.replace('/unauthorized'); 
-    }
-  }, []);
+export default function FindConselor() {
   return (
     <div className="flex h-screen">
       {/* Sidebar toggle button for small screens */}
@@ -37,12 +25,11 @@ export default function Home() {
       </button>
 
       {/* Sidebar */}
-      <Leftbar />
-
+      <Leftbar/>
       {/* Main content */}
       <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
         <Topbar />
-        <h1 className="text-2xl font-bold">Welcome to your dashboard</h1>
+        <h1 className="text-2xl font-bold">Welcome to your conselor</h1>
         {/* Add your content here */}
       </main>
     </div>
